@@ -1,0 +1,4 @@
+*.exe
+*.spec
+.idea
+*.iml
