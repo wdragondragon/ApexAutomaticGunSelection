@@ -23,6 +23,7 @@ common_file = lua_path + '通用' + lua_suffix
 shake_file = lg_file_path + 'shake' + lua_suffix
 
 screenshot_resolution = {
+    (1920, 1080): (1558, 969, 1705, 1000),
     (2560, 1440): (2093, 1281, 2275, 1332),
     (3440, 1440): (2093, 1281, 2275, 1332)
 }
