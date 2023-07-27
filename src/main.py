@@ -1,4 +1,5 @@
 import os
+import tkinter
 from io import BytesIO
 from shutil import copyfile
 
@@ -21,6 +22,11 @@ lua_path = lg_file_path + 'lua\\'
 common_file = lua_path + '通用' + lua_suffix
 shake_file = lg_file_path + 'shake' + lua_suffix
 
+screenshot_resolution = {
+    (2560, 1440): (2093, 1281, 2275, 1332),
+    (3440, 1440): (2093, 1281, 2275, 1332)
+}
+
 
 def copy_file(source_path, target_path):
     op = os.path
@@ -32,24 +38,35 @@ def copy_file(source_path, target_path):
             return
 
 
-class CompareImage:
-    @staticmethod
-    def compare_image(img, path_image):
-        buffer = BytesIO()
-        img.save(buffer, format="PNG")
-        buffer.seek(0)
-        image_a = cv2.imdecode(np.frombuffer(buffer.getvalue(), dtype=np.uint8), cv2.IMREAD_COLOR)
-        buffer.close()
-        image_b = cv2.imdecode(np.fromfile(path_image, dtype=np.uint8), cv2.IMREAD_COLOR)
-        gray_a = cv2.cvtColor(image_a, cv2.COLOR_BGR2GRAY)
-        gray_b = cv2.cvtColor(image_b, cv2.COLOR_BGR2GRAY)
-        (score, diff) = structural_similarity(gray_a, gray_b, full=True)
-        return score
+def get_resolution():
+    screen = tkinter.Tk()
+    xw = screen.winfo_screenwidth()
+    yh = screen.winfo_screenheight()
+    return xw, yh
+
+
+def compare_image(img, path_image):
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    buffer.seek(0)
+    image_a = cv2.imdecode(np.frombuffer(buffer.getvalue(), dtype=np.uint8), cv2.IMREAD_COLOR)
+    buffer.close()
+    image_b = cv2.imdecode(np.fromfile(path_image, dtype=np.uint8), cv2.IMREAD_COLOR)
+    gray_a = cv2.cvtColor(image_a, cv2.COLOR_BGR2GRAY)
+    gray_b = cv2.cvtColor(image_b, cv2.COLOR_BGR2GRAY)
+    (score, diff) = structural_similarity(gray_a, gray_b, full=True)
+    return score
 
 
 keyboard = Controller()
 
-compare_image = CompareImage()
+(x, y) = get_resolution()
+
+bbox = screenshot_resolution[(x, y)]
+
+print("分辨率: {}x{}".format(x, y))
+
+print("截图区域: {}".format(bbox))
 
 
 # 点击按钮
@@ -64,9 +81,9 @@ def on_release(key):
     if not hasattr(key, 'name') and (key.char in refresh_button):
         score_temp = 0.00000000000000000000
         max_gun = ''
-        img = ImageGrab.grab(bbox=(2093, 1281, 2275, 1332))
+        img = ImageGrab.grab(bbox=bbox)
         for fileName in os.listdir(image_path):
-            score = compare_image.compare_image(img, image_path + fileName)
+            score = compare_image(img, image_path + fileName)
             if score > score_temp:
                 score_temp = score
                 max_gun = fileName.split('.')[0]
