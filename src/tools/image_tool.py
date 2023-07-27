@@ -26,7 +26,7 @@ keyboard = Controller()
 
 def on_press(key):
     # print('{0} 被按下'.format(key))
-    return
+    pass
 
 
 # 释放按钮，按esc按键会退出监听
