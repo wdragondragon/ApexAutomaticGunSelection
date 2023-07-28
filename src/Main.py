@@ -2,6 +2,7 @@ import configparser
 import threading
 
 import pynput
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
 import ApexListener
@@ -12,6 +13,7 @@ import sys
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     log_window = LogWindow()
+    # log_window.setWindowFlags(Qt.WindowStaysOnTopHint)
     log_window.show()
 
     config = configparser.ConfigParser()  # 创建对象
@@ -67,5 +69,8 @@ if __name__ == "__main__":
 
     mouse_listener_thread.start()
     keyboard_listener_thread.start()
+
+    key_release_thread = threading.Thread(target=apex_mouser_listener.watch_release)
+    key_release_thread.start()
 
     sys.exit(app.exec_())

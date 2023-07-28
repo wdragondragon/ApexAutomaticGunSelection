@@ -24,6 +24,7 @@ class LogWindow(QMainWindow):
 
         # 创建 QTextEdit 组件用于显示日志
         self.log_text = QTextEdit()
+        self.log_text.document().setMaximumBlockCount(1000)
         self.log_text.setReadOnly(True)
 
         # 添加 QTextEdit 组件到主窗口
