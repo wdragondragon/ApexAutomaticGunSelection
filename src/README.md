@@ -10,6 +10,7 @@ pip install scikit-image
 
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pynput
 
+pip install PyQt5
 
 ### 打包
 
