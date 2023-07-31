@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 from skimage.metrics import structural_similarity
 from shutil import copyfile
-from LogWindow import LogWindow
+from src.LogWindow import LogWindow
 
 
 class Tools:

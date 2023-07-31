@@ -1,14 +1,13 @@
 import configparser
+import sys
 import threading
 
 import pynput
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
 import ApexListener
-from Tools import Tools
 from LogWindow import LogWindow
-import sys
+from Tools import Tools
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
