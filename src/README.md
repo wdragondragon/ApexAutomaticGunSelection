@@ -12,6 +12,10 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pynput
 
 pip install PyQt5
 
+pip install pywin32
+
+pip install jsonpath
+
 ### 打包
 
 pip install Pyinstaller

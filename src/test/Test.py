@@ -1,8 +1,5 @@
 import threading
 
-from pynput.mouse import Controller, Button
-from KeyAndMouseListener import *
-
 from src.test.ApexMouseLisenter import *
 
 g_mouse_listener = pynput.mouse.Listener(

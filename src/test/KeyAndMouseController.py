@@ -1,8 +1,5 @@
 from pynput.keyboard import Controller as KeyController, Key
 from pynput.mouse import Controller as MouseController, Button
-import win32api
-import win32con
-import pyautogui
 from ctypes import *
 
 KeyController = KeyController()
