@@ -2,6 +2,7 @@ import time
 
 from pynput.mouse import Button
 
+from LogWindow import LogWindow
 from test.KeyAndMouseController import set_mouse_position
 from test.KeyAndMouseListener import get_mouse_listener
 
@@ -21,11 +22,10 @@ def left_click(select_gun):
             mouse_move = current_gun_config["mouse_move"]
             press_time = mouse_listener.press_time(Button.left)
             press_time = int(press_time / (interval * 1000))
-            print("press_time {} ,down_time:{} len_mouse_move:{}".format(press_time, down_time, len(mouse_move)))
             if press_time > down_time and press_time + 1 < len(mouse_move):
                 down_time = press_time
                 move_x_y = mouse_move[press_time]
                 set_mouse_position(move_x_y["x"], move_x_y["y"])
-                print("down_time: {}".format(down_time))
+                LogWindow().print_log("进行第{}次下压".format(down_time))
         else:
             down_time = 0
