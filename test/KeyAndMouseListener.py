@@ -61,7 +61,7 @@ def init(select_gun, refresh_button):
     global mouse_listener, key_listener
     mouse_listener = MouseListener()
     key_listener = KeyListener(select_gun=select_gun, refresh_button=refresh_button)
-    return (mouse_listener, key_listener)
+    return mouse_listener, key_listener
 
 
 def get_mouse_listener():
