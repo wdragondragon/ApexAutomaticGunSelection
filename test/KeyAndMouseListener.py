@@ -1,20 +1,22 @@
-import pynput
-
-from KeyAndMouseController import KeyController, MouseController
-from src.Tools import Tools
+import threading
+from Tools import Tools
 
 
 class KeyListener:
 
-    def __init__(self):
+    def __init__(self, select_gun, refresh_button):
         super().__init__()
+        self.select_gun = select_gun
+        self.refresh_button = refresh_button
 
     def on_press(self, key):
         pass
 
     # 释放按钮，按esc按键会退出监听
     def on_release(self, key):
-        pass
+        if not hasattr(key, 'name') and hasattr(key, 'char') and key.char is not None and (
+                key.char in self.refresh_button):
+            threading.Thread(target=self.select_gun.select_gun).start()
 
 
 class MouseListener:
@@ -51,5 +53,20 @@ class MouseListener:
             return 0
 
 
-mouse_listener = MouseListener()
-key_listener = KeyListener()
+mouse_listener = None
+key_listener = None
+
+
+def init(select_gun, refresh_button):
+    global mouse_listener, key_listener
+    mouse_listener = MouseListener()
+    key_listener = KeyListener(select_gun=select_gun, refresh_button=refresh_button)
+    return (mouse_listener, key_listener)
+
+
+def get_mouse_listener():
+    return mouse_listener
+
+
+def get_key_listener():
+    return key_listener

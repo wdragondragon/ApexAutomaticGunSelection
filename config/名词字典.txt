@@ -1,0 +1,23 @@
+fire_rate:一分钟射速
+mouse_move:射下当前子弹后的鼠标移动轨迹
+fitting_factor: 下压影响配件系数
+
+
+barrel_stabilizer:枪口稳定器
+base_vie_kick: 基础后座力
+random_pitch_view_kick: 随机垂直后坐力。
+random_taw_view_kick:随机水平后坐力。
+
+
+
+laser_sight: 激光瞄准镜
+hip_fir_spread: 腰射散射
+moving_spread_acceleration: 移动散射
+spread_decay_rate: 扩散恢复速度
+
+
+
+standard_stock: 标准枪托
+aim_drift: 开镜后座
+
+可以只考虑枪口稳定器和枪托的影响，其他的影响可以忽略。

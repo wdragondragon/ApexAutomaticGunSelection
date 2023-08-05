@@ -1,0 +1,47 @@
+{
+    "barrel_stabilizer": {
+        "level_1": {
+            "base_view_kick": 0.95,
+            "random_pitch_view_kick": 0.8,
+            "random_taw_view_kick": 0.9
+        },
+        "level_2": {
+            "base_view_kick": 0.9,
+            "random_pitch_view_kick": 0.75,
+            "random_taw_view_kick": 0.85
+        },
+        "level_3": {
+            "base_view_kick": 0.85,
+            "random_pitch_view_kick": 0.7,
+            "random_taw_view_kick": 0.8
+        }
+    },
+    "laser_sight": {
+        "level_1": {
+            "hip_fir_spread": 0.8,
+            "moving_spread_acceleration": 0.9,
+            "spread_decay_rate": 0.9
+        },
+        "level_2": {
+            "hip_fir_spread": 0.6,
+            "moving_spread_acceleration": 0.85,
+            "spread_decay_rate": 0.85
+        },
+        "level_3": {
+            "hip_fir_spread": 0.4,
+            "moving_spread_acceleration": 0.8,
+            "spread_decay_rate": 0.8
+        }
+    },
+    "standard_stock": {
+        "level_1": {
+            "aim_drift": 0.85
+        },
+        "level_2": {
+            "aim_drift": 0.75
+        },
+        "level_3": {
+            "aim_drift": 0.55
+        }
+    }
+}
